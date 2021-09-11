@@ -11,7 +11,7 @@ public class Category {
     private Long id;
     private String description;
 
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(mappedBy = "categories", fetch = FetchType.EAGER)
     Set<Recipe> recipes = new HashSet<>();
 
     public Long getId() {
@@ -28,5 +28,13 @@ public class Category {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
     }
 }

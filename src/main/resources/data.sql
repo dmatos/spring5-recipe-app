@@ -1,0 +1,10 @@
+INSERT INTO category (description) VALUES ('Mexican');
+INSERT INTO category (description) VALUES ('Brazilian');
+INSERT INTO category (description) VALUES ('Portuguese');
+INSERT INTO category (description) VALUES ('Spanish');
+INSERT INTO unity_of_measure(description) VALUES ('Teaspoon');
+INSERT INTO unity_of_measure(description) VALUES ('Tablespoon');
+INSERT INTO unity_of_measure(description) VALUES ('Cup');
+INSERT INTO unity_of_measure(description) VALUES ('Pound');
+INSERT INTO unity_of_measure(description) VALUES ('Ounce');
+INSERT INTO unity_of_measure(description) VALUES ('g');
