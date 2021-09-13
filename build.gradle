@@ -1,9 +1,18 @@
 apply plugin: 'java'
 //apply plugin: 'maven'
 
-plugins {
-    id "org.springframework.boot" version "2.1.0.RELEASE"
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.0.RELEASE"
+    }
 }
+
+apply plugin: "org.springframework.boot"
 apply plugin: "org.springframework.boot"
 
 group = 'guru.springframework'
