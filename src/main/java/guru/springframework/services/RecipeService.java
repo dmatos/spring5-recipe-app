@@ -4,6 +4,9 @@ import guru.springframework.model.Recipe;
 import guru.springframework.repositories.RecipeRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
+import java.util.List;
+
 @Service
 public class RecipeService  {
 
@@ -27,5 +30,11 @@ public class RecipeService  {
 
     public Iterable<Recipe> findAll(){
         return recipeRepository.findAll();
+    }
+
+    public List<Recipe> saveAll(List<Recipe> recipes){
+        List<Recipe> saved = new LinkedList<>();
+        recipeRepository.saveAll(recipes).forEach(saved::add);
+        return saved;
     }
 }

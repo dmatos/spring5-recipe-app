@@ -6,13 +6,21 @@ import guru.springframework.services.CategoryService;
 import guru.springframework.services.IngredientService;
 import guru.springframework.services.RecipeService;
 import guru.springframework.services.UnityOfMeasureService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
+import java.beans.Transient;
 import java.math.BigDecimal;
+import java.util.LinkedList;
+import java.util.List;
 
 @Component
-public class DataLoader implements CommandLineRunner {
+@Slf4j
+public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     private final RecipeService recipeService;
     private final UnityOfMeasureService unityOfMeasureService;
@@ -31,7 +39,16 @@ public class DataLoader implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    @Transactional
+    public void onApplicationEvent(ContextRefreshedEvent event){
+        recipeService.saveAll(getRecipes());
+    }
+    
+    public List<Recipe> getRecipes() {
+
+        List<Recipe> recipes = new LinkedList<>();
+
+        log.debug("Loading data...");
 
         UnityOfMeasure g = unityOfMeasureService.findByDescription("g");
         UnityOfMeasure cup = unityOfMeasureService.findByDescription("Cup");
@@ -74,5 +91,9 @@ public class DataLoader implements CommandLineRunner {
 
         chilliRecipe.getIngredients().add(beans);
         chilliRecipe = recipeService.save(chilliRecipe);
+
+        recipes.add(chilliRecipe);
+
+        return recipes;
     }
 }
