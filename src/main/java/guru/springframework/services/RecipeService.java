@@ -4,8 +4,10 @@ import guru.springframework.model.Recipe;
 import guru.springframework.repositories.RecipeRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class RecipeService  {
@@ -36,5 +38,11 @@ public class RecipeService  {
         List<Recipe> saved = new LinkedList<>();
         recipeRepository.saveAll(recipes).forEach(saved::add);
         return saved;
+    }
+
+    public Set<Recipe> getRecipes(){
+        Set<Recipe> recipes = new HashSet<>();
+        recipeRepository.findAll().forEach(recipes::add);
+        return recipes;
     }
 }

@@ -16,12 +16,10 @@ import java.util.Set;
 @Controller
 public class IndexController {
 
-    private final RecipeRepository recipeRepository;
     private final CategoryRepository categoryRepository;
     private final UnityOfMeasureRepository unityOfMeasureRepository;
 
-    public IndexController(RecipeRepository recipeRepository, CategoryRepository categoryRepository, UnityOfMeasureRepository unityOfMeasureRepository) {
-        this.recipeRepository = recipeRepository;
+    public IndexController(CategoryRepository categoryRepository, UnityOfMeasureRepository unityOfMeasureRepository) {
         this.categoryRepository = categoryRepository;
         this.unityOfMeasureRepository = unityOfMeasureRepository;
     }
