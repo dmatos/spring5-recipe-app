@@ -75,4 +75,12 @@ public class RecipeControllerTest {
         assertEquals(2, setInController.size());
     }
 
+    @Test
+    public void listRecipes() {
+    }
+
+    @Test
+    public void findById() {
+
+    }
 }

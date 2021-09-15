@@ -3,32 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${recipe.description}">Title</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+          crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+            crossorigin="anonymous"></script>
 </head>
 <body>
-<h3>Description</h3>
-<p th:text="${recipe.description}" > </p>
-<h3>Difficulty</h3>
-<p th:text="${recipe.difficulty}"></p>
-<h3>Preparation Time in minutes</h3>
-<p th:text="${recipe.prepTime}"></p>
-<h3>Cook Time in minutes</h3>
-<p th:text="${recipe.cookTime}"></p>
-<h3>Categories</h3>
-<div th:each="category : ${recipe.categories}">
-    <a th:href="@{/category/} + ${category.id}" th:text="${category.description}"></a>
-</div>
-<h3>Ingredients</h3>
-<div th:each="ingredient : ${recipe.ingredients}">
-    <table>
-        <tbody>
-        <tr>
-            <td th:text="${ingredient.amount}"> </td>
-            <td th:text="${ingredient.unityOfMeasure.description}"> </td>
-            <td th:text="${ingredient.description}"> </td>
-        </tr>
-        </tbody>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-9 col-md-offset-3">
+            <div class="panel-group">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h1 class="panel-title" th:text="${recipe.description}"></h1>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Categories</h5>
+                            </div>
+                            <div class="col-md-9">
+                                <div th:each="category : ${recipe.categories}">
+                                    <a th:href="@{/category/} + ${category.id}" th:text="${category.description}"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Difficulty</h5>
+                            </div>
+                            <div class="col-md-9">
+                                <p th:text="${recipe.difficulty}"></p>
+                            </div>
 
-    </table>
+                            <div class="col-md-3">
+                                <h5>Preparation Time in minutes</h5>
+                            </div>
+                            <div class="col-md-9">
+                                <p th:text="${recipe.prepTime}"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Cook Time in minutes</h5>
+                            </div>
+                            <div class="col-md-9">
+                                <p th:text="${recipe.cookTime}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">Ingredients</h1>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div th:each="ingredient : ${recipe.ingredients}">
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td th:text="${ingredient.amount}"> </td>
+                                            <td th:text="${ingredient.unityOfMeasure.description}"> </td>
+                                            <td th:text="${ingredient.description}"> </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</body>
-</html>

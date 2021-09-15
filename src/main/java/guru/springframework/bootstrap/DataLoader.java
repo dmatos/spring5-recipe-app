@@ -54,6 +54,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         UnityOfMeasure cup = unityOfMeasureService.findByDescription("Cup");
 
         Category mexican = categoryService.findByDescription("Mexican");
+        Category brazilian = categoryService.findByDescription("Brazilian");
 
         Recipe chilliRecipe = new Recipe();
         chilliRecipe.setDescription("CHILLI COM CARNE MOÍDA E FEIJÃO");
@@ -66,7 +67,11 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         mexican.getRecipes().add(chilliRecipe);
         mexican = categoryService.save(mexican);
 
+        brazilian.getRecipes().add(chilliRecipe);
+        brazilian = categoryService.save(brazilian);
+
         chilliRecipe.getCategories().add(mexican);
+        chilliRecipe.getCategories().add(brazilian);
         chilliRecipe = recipeService.save(chilliRecipe);
 
         Ingredient ground_meat = new Ingredient();
