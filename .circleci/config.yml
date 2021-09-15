@@ -38,5 +38,7 @@ jobs:
             - ~/.mvn
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
+      - run: mvn install -DskipTests
+
       # run tests!
-      - run: mvn install
+      - run: mvn test
