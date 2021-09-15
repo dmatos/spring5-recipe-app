@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +15,12 @@ public class Ingredient {
 
     private String description;
     private BigDecimal amount;
+
+    public Ingredient(String description, BigDecimal amount, UnityOfMeasure unityOfMeasure){
+        this.description = description;
+        this.amount = amount;
+        this.unityOfMeasure = unityOfMeasure;
+    }
 
     @ManyToOne
     private Recipe recipe;
